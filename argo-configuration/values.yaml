@@ -1,5 +1,5 @@
 argoWorkflow:
-
+  namespace: argo
 argoEvent:
   namespace: argo-events
   eventbus:
