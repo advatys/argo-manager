@@ -1,8 +1,8 @@
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}
-{{- $repourl := .Values.argo-event.repository.url -}}
-{{- $repoversion := .Values.argo-event.repository.version -}}
+{{- $repourl := .Values.argoEvent.repository.url -}}
+{{- $repoversion := .Values.argoEvent.repository.version -}}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -28,7 +28,7 @@ spec:
         helm:
           releaseName: 'argo-event'
           values: |
-{{ toYaml .Values.argo-event.config | indent 12 }}
+{{ toYaml .Values.argoEvent.config | indent 12 }}
             
       syncPolicy:
         automated:

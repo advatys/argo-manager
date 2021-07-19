@@ -1,6 +1,6 @@
-argo-workflow:
+argoWorkflow:
 
-argo-event:
+argoEvent:
   namespace: argo-events
   eventbus:
     replicas: 3

@@ -1,4 +1,4 @@
-argo-workflow:
+argoWorkflow:
   repository:
     version: 0.2.7
   config:
@@ -12,7 +12,7 @@ argo-workflow:
     controller:
       containerRuntimeExecutor: k8sapi # otherwise, if the default value 'docker' kept instead, the serviceAccount won't work with restricted scc
 
-argo-event:
+argoEvent:
   repository:
     version: 1.6.4
   config:
