@@ -1,6 +1,7 @@
 apiVersion: v2
-name: argo-controllers
-description: Install argo-workflow and argo-events on Openshift clusters
+name: argo-configuration
+description: Manage your installed argo-workflows/argo-events
+
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives

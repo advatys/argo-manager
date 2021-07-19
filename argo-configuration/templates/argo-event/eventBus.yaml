@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventBus
+metadata:
+  name: {{ .Release.Name }}-default
+spec:
+  nats:
+    native:
+      # Optional, defaults to 3. If it is < 3, set it to 3, that is the minimal requirement.
+      replicas: {{ .Values.argo-event.eventbus.replicas }}
+      # Optional, authen strategy, "none" or "token", defaults to "none"
+      auth: token
+      containerTemplate:
+{{ toYaml .Values.argo-event.eventbus.containerTemplate | indent 8 }}
+
+#      metricsContainerTemplate:
+#        resources:
+#          requests:
+#            cpu: "10m"
+#      antiAffinity: false
+      persistence:
+{{ toYaml .Values.argo-event.eventbus.persistence | indent 8 }}

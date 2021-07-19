@@ -1,0 +1,14 @@
+argo-workflow:
+
+argo-event:
+  namespace: argo-events
+  eventbus:
+    replicas: 3
+    persistence:
+      storageClassName: gp2
+      accessMode: ReadWriteOnce
+      volumeSize: 2Gi
+    containerTemplate:
+      resources:
+        requests:
+          cpu: "10m"
