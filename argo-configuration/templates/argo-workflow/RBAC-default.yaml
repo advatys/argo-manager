@@ -29,7 +29,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: workflow-role
+  name: {{ .Release.Name }}-workflow-role
 subjects:
   - kind: ServiceAccount
     name: default
