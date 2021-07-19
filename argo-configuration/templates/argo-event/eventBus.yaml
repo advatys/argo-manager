@@ -11,7 +11,7 @@ spec:
       # Optional, authen strategy, "none" or "token", defaults to "none"
       auth: token
       containerTemplate:
-{{ toYaml .Values.argo-event.eventbus.containerTemplate | indent 8 }}
+{{ toYaml .Values.argoEvent.eventbus.containerTemplate | indent 8 }}
 
 #      metricsContainerTemplate:
 #        resources:
@@ -19,4 +19,4 @@ spec:
 #            cpu: "10m"
 #      antiAffinity: false
       persistence:
-{{ toYaml .Values.argo-event.eventbus.persistence | indent 8 }}
+{{ toYaml .Values.argoEvent.eventbus.persistence | indent 8 }}
