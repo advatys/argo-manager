@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  generateName: helm-publish-
+  name: helm-publish
 spec:
   entrypoint: init-dag
   templates:
