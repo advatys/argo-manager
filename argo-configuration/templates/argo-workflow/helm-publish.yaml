@@ -5,6 +5,9 @@ metadata:
   namespace: argo
 spec:
   entrypoint: init-dag
+    volumes:
+  - name: workdir
+    emptyDir: {}
   templates:
   - name: init-dag
     dag:
@@ -20,4 +23,7 @@ spec:
     container:
       image: alpine/helm
       command: [sh, -c]
-      args: ["helm create \"mychart\""]
+      args: ["helm create \"/workspace/mychart\""]
+      volumeMounts:
+      - name: workdir
+        mountPath: /workspace
