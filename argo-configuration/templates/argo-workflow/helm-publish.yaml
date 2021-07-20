@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  generateName: helm-publish-
+spec:
+  entrypoint: init-dag
+  templates:
+  - name: init-dag
+    dag:
+      tasks:
+      - name: helm-test
+        template: helm-test
+
+#      - name: D
+#        depends: "B && C"
+#        template: coinflip
+
+  - name: helm-test
+    container:
+      image: alpine/helm
+      command: [sh, -c]
+      args: ["helm create \"mychart\""]
