@@ -16,6 +16,7 @@ argoEvent:
   repository:
     version: 1.6.4
   config:
+    singleNamespace: false
     securityContext:
       runAsNonRoot: true
       runAsUser: null
