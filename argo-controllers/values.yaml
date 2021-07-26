@@ -3,6 +3,9 @@ argoWorkflow:
     version: 0.2.7
   config:
     singleNamespace: false
+    server:
+      enabled: true
+      extraArgs: ["--auth-mode=client"]
     workflow:
       serviceAccount:
         create: true 
