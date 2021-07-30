@@ -1,12 +1,12 @@
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}
-{{- $repourl := .Values.argoEvent.repository.url -}}
-{{- $repoversion := .Values.argoEvent.repository.version -}}
+{{- $repourl := .Values.argoEvents.repository.url -}}
+{{- $repoversion := .Values.argoEvents.repository.version -}}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: "{{ $relname }}-argo-event"
+  name: "{{ $relname }}-argo-events"
 
 spec:
   generators: 
@@ -14,7 +14,7 @@ spec:
 
   template:
     metadata:
-      name: 'argo-event-{{ "{{" }}name{{ "}}" }}'
+      name: 'argo-events-{{ "{{" }}name{{ "}}" }}'
     spec:
       destination:
         namespace: 'argo-events'
@@ -26,9 +26,9 @@ spec:
         chart: argo-events
 
         helm:
-          releaseName: 'argo-event'
+          releaseName: 'argo-events'
           values: |
-{{ toYaml .Values.argoEvent.config | indent 12 }}
+{{ toYaml .Values.argoEvents.config | indent 12 }}
             
       syncPolicy:
         automated:

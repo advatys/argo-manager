@@ -1,12 +1,12 @@
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}
-{{- $repourl := .Values.argoWorkflow.repository.url -}}
-{{- $repoversion := .Values.argoWorkflow.repository.version -}}
+{{- $repourl := .Values.argoWorkflows.repository.url -}}
+{{- $repoversion := .Values.argoWorkflows.repository.version -}}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: "{{ $relname }}-argo-workflow"
+  name: "{{ $relname }}-argo-workflows"
 
 spec:
   generators: 
@@ -14,7 +14,7 @@ spec:
 
   template:
     metadata:
-      name: 'argo-workflow-{{ "{{" }}name{{ "}}" }}'
+      name: 'argo-workflows-{{ "{{" }}name{{ "}}" }}'
     spec:
       destination:
         namespace: 'argo'
@@ -26,9 +26,9 @@ spec:
         chart: argo-workflows
         
         helm:
-          releaseName: 'argo-workflow'
+          releaseName: 'argo-workflows'
           values: |
-{{ toYaml .Values.argoWorkflow.config | indent 12 }}
+{{ toYaml .Values.argoWorkflows.config | indent 12 }}
             
       syncPolicy:
         automated:
