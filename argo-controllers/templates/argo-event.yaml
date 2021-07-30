@@ -1,3 +1,4 @@
+ {{- if eq .Values.argoEvents.enabled "true" }}
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}
@@ -35,3 +36,4 @@ spec:
           prune: true
         syncOptions:
           - CreateNamespace=true
+ {{- end }}

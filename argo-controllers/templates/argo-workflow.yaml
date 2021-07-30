@@ -1,3 +1,4 @@
+ {{- if eq .Values.argoWorkflows.enabled "true" }}
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}
@@ -17,7 +18,7 @@ spec:
       name: 'argo-workflows-{{ "{{" }}name{{ "}}" }}'
     spec:
       destination:
-        namespace: 'argo'
+        namespace: 'argo-workflows'
         server: '{{ "{{" }}server{{ "}}" }}'
       project: '{{ $project }}'
       source:
@@ -35,3 +36,4 @@ spec:
           prune: true
         syncOptions:
           - CreateNamespace=true
+ {{- end }}
