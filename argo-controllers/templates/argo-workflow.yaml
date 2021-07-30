@@ -1,4 +1,4 @@
- {{- if eq .Values.argoWorkflows.enabled "true" }}
+ {{- if eq (.Values.argoWorkflows.enabled | quote) "true" }}
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}

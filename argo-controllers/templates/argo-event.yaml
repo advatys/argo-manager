@@ -1,4 +1,4 @@
- {{- if eq .Values.argoEvents.enabled "true" }}
+ {{- if eq (.Values.argoEvents.enabled | quote) "true" }}
 {{- $relname := .Release.Name -}}
 {{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
 {{- $project := .Values.argocdConfig.project.name -}}
