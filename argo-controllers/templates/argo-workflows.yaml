@@ -1,0 +1,39 @@
+ {{- if .Values.argoWorkflows.enabled }}
+{{- $relname := .Release.Name -}}
+{{- $targetNamespace := .Values.argocdConfig.targetNamespace -}}
+{{- $project := .Values.argocdConfig.project.name -}}
+{{- $repourl := .Values.argoWorkflows.repository.url -}}
+{{- $repoversion := .Values.argoWorkflows.repository.version -}}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: "{{ $relname }}-argo-workflows"
+
+spec:
+  generators: 
+{{ toYaml .Values.argocdConfig.generators | nindent 4 }}
+
+  template:
+    metadata:
+      name: 'argo-workflows-{{ "{{" }}name{{ "}}" }}'
+    spec:
+      destination:
+        namespace: 'argo-workflows'
+        server: '{{ "{{" }}server{{ "}}" }}'
+      project: '{{ $project }}'
+      source:
+        repoURL: 'https://argoproj.github.io/argo-helm' #'{{ $repourl }}'
+        targetRevision: '{{ $repoversion }}'
+        chart: argo-workflows
+        
+        helm:
+          releaseName: 'argo-workflows'
+          values: |
+{{ toYaml .Values.argoWorkflows.config | indent 12 }}
+            
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
+ {{- end }}

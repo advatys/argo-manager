@@ -1,0 +1,34 @@
+argoWorkflows:
+  enabled: true
+  repository:
+    version: 0.2.7
+  config:
+    singleNamespace: false
+    server:
+      enabled: true
+      extraArgs: ["--auth-mode=client"]
+    workflow:
+      serviceAccount:
+        create: true 
+        name: "argo-workflows" 
+      rbac:
+        create: true 
+    controller:
+      containerRuntimeExecutor: k8sapi # otherwise, if the default value 'docker' kept instead, the serviceAccount won't work with restricted scc
+
+argoEvents:
+  enabled: true
+  repository:
+    version: 1.6.4
+  config:
+    singleNamespace: false
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: null
+
+
+argocdConfig:
+  generators: []
+  project:
+    create: false
+    name: default
